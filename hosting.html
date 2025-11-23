@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hosting Minecraft & VPS Vật Lý</title>
+  <meta name="description" content="Trang bán dịch vụ Hosting Minecraft và VPS vật lý với bảng giá, gói tuỳ chỉnh và form liên hệ." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Bổ sung nhẹ cho trang hosting (tái sử dụng style.css là chính) */
+    .hero-host { height: 280px; }
+    .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 900px) { .pricing { grid-template-columns: 1fr; } }
+    .price { font-size: 24px; font-weight: 800; color: #fff; margin: 6px 0 10px; }
+    .features { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; color: #cbd5e1; }
+    .features li { display: flex; gap: 8px; align-items: start; }
+    .plan-actions { display: flex; gap: 8px; margin-top: 10px; }
+    .btn-ghost { padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,.2); background: transparent; color: #e7e9ee; cursor: pointer; }
+
+    .calc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (max-width: 900px) { .calc-grid { grid-template-columns: 1fr; } }
+    .range { display: grid; gap: 6px; }
+    .range input[type=range] { width: 100%; }
+    .stat { display: grid; gap: 6px; }
+    .stat .value { font-size: 28px; font-weight: 800; }
+
+    .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="hero hero-host" style="background-image: var(--bg-url)">
+    <div class="hero-overlay">
+      <h1>Hosting Minecraft & VPS Vật Lý</h1>
+      <p>Dịch vụ hiệu năng cao • Hỗ trợ 24/7 • Anti‑DDoS</p>
+      <div class="social-links" style="margin-top:10px;">
+        <a class="btn discord" href="https://discord.gg/your-invite" target="_blank" rel="noopener">Discord</a>
+        <a class="btn facebook" href="https://facebook.com/your-admin" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Gói Hosting Minecraft -->
+    <section class="card" id="mc-hosting">
+      <h2>Gói Hosting Minecraft</h2>
+      <div class="pricing">
+        <article class="card">
+          <h3>STONE</h3>
+          <div class="price" data-price="99000">99.000₫/tháng</div>
+          <ul class="features">
+            <li>🧠 RAM: 2 GB</li>
+            <li>🧮 CPU Share: 50%</li>
+            <li>💾 NVMe: 20 GB</li>
+            <li>👥 Slot: Không giới hạn</li>
+            <li>🛡️ Anti‑DDoS</li>
+          </ul>
+          <div class="plan-actions">
+            <button class="btn" data-select-plan='{"type":"MC","name":"STONE","price":99000}'>Chọn gói này</button>
+            <button class="btn-ghost" onclick="document.getElementById('custom').scrollIntoView({behavior:'smooth'})">Tuỳ chỉnh</button>
+          </div>
+        </article>
+        <article class="card">
+          <h3>IRON</h3>
+          <div class="price" data-price="179000">179.000₫/tháng</div>
+          <ul class="features">
+            <li>🧠 RAM: 4 GB</li>
+            <li>🧮 CPU Share: 70%</li>
+            <li>💾 NVMe: 40 GB</li>
+            <li>👥 Slot: Không giới hạn</li>
+            <li>🛡️ Anti‑DDoS</li>
+          </ul>
+          <div class="plan-actions">
+            <button class="btn" data-select-plan='{"type":"MC","name":"IRON","price":179000}'>Chọn gói này</button>
+            <button class="btn-ghost" onclick="document.getElementById('custom').scrollIntoView({behavior:'smooth'})">Tuỳ chỉnh</button>
+          </div>
+        </article>
+        <article class="card">
+          <h3>DIAMOND</h3>
+          <div class="price" data-price="329000">329.000₫/tháng</div>
+          <ul class="features">
+            <li>🧠 RAM: 8 GB</li>
+            <li>🧮 CPU Share: 100%</li>
+            <li>💾 NVMe: 80 GB</li>
+            <li>👥 Slot: Không giới hạn</li>
+            <li>🛡️ Anti‑DDoS</li>
+          </ul>
+          <div class="plan-actions">
+            <button class="btn" data-select-plan='{"type":"MC","name":"DIAMOND","price":329000}'>Chọn gói này</button>
+            <button class="btn-ghost" onclick="document.getElementById('custom').scrollIntoView({behavior:'smooth'})">Tuỳ chỉnh</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Gói VPS Vật Lý -->
+    <section class="card" id="vps">
+      <h2>Gói VPS Vật Lý</h2>
+      <div class="pricing">
+        <article class="card">
+          <h3>VPS-1</h3>
+          <div class="price" data-price="199000">199.000₫/tháng</div>
+          <ul class="features">
+            <li>⚙️ vCPU: 2</li>
+            <li>🧠 RAM: 4 GB</li>
+            <li>💾 NVMe: 40 GB</li>
+            <li>🌐 Băng thông: 1 TB</li>
+            <li>🛡️ Anti‑DDoS</li>
+          </ul>
+          <div class="plan-actions">
+            <button class="btn" data-select-plan='{"type":"VPS","name":"VPS-1","price":199000}'>Chọn gói này</button>
+          </div>
+        </article>
+        <article class="card">
+          <h3>VPS-2</h3>
+          <div class="price" data-price="349000">349.000₫/tháng</div>
+          <ul class="features">
+            <li>⚙️ vCPU: 4</li>
+            <li>🧠 RAM: 8 GB</li>
+            <li>💾 NVMe: 80 GB</li>
+            <li>🌐 Băng thông: 2 TB</li>
+            <li>🛡️ Anti‑DDoS</li>
+          </ul>
+          <div class="plan-actions">
+            <button class="btn" data-select-plan='{"type":"VPS","name":"VPS-2","price":349000}'>Chọn gói này</button>
+          </div>
+        </article>
+        <article class="card">
+          <h3>VPS-3</h3>
+          <div class="price" data-price="649000">649.000₫/tháng</div>
+          <ul class="features">
+            <li>⚙️ vCPU: 8</li>
+            <li>🧠 RAM: 16 GB</li>
+            <li>💾 NVMe: 160 GB</li>
+            <li>🌐 Băng thông: 4 TB</li>
+            <li>🛡️ Anti‑DDoS</li>
+          </ul>
+          <div class="plan-actions">
+            <button class="btn" data-select-plan='{"type":"VPS","name":"VPS-3","price":649000}'>Chọn gói này</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Tuỳ chỉnh gói -->
+    <section class="card" id="custom">
+      <h2>Gói tuỳ chỉnh</h2>
+      <div class="calc-grid">
+        <div class="card">
+          <div class="form-group">
+            <label for="svc-type">Loại dịch vụ</label>
+            <select id="svc-type" class="form-control" style="padding: 10px; border-radius: 10px; background: rgba(255,255,255,.03); color: #e7e9ee; border: 1px solid rgba(255,255,255,.14);">
+              <option value="MC">Minecraft Hosting</option>
+              <option value="VPS">VPS Vật Lý</option>
+            </select>
+          </div>
+          <div class="range">
+            <label>RAM: <strong><span id="ram-val">4</span> GB</strong></label>
+            <input type="range" min="1" max="32" value="4" id="ram-range">
+          </div>
+          <div class="range">
+            <label>vCPU: <strong><span id="cpu-val">2</span></strong></label>
+            <input type="range" min="1" max="8" value="2" id="cpu-range">
+          </div>
+          <div class="range">
+            <label>NVMe: <strong><span id="ssd-val">40</span> GB</strong></label>
+            <input type="range" min="10" max="200" step="10" value="40" id="ssd-range">
+          </div>
+        </div>
+        <div class="card stat">
+          <div>Giá ước tính</div>
+          <div class="value" id="price-val">0₫</div>
+          <div class="muted small">Giá tham khảo, liên hệ để nhận báo giá tốt nhất.</div>
+          <button class="btn" id="apply-custom">Áp dụng vào đơn hàng</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Liên hệ / Đặt hàng -->
+    <section class="card" id="contact">
+      <h2>Liên hệ / Đặt hàng</h2>
+      <form id="order-form">
+        <div class="contact-grid">
+          <div class="form-group">
+            <label for="buyer-name">Tên của bạn</label>
+            <input type="text" id="buyer-name" required />
+          </div>
+          <div class="form-group">
+            <label for="buyer-contact">Email hoặc Discord</label>
+            <input type="text" id="buyer-contact" placeholder="email@domain.com hoặc username#1234" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="selected-plan">Gói đã chọn</label>
+          <input type="text" id="selected-plan" placeholder="Chưa chọn" readonly />
+        </div>
+        <div class="form-group">
+          <label for="note">Ghi chú/Nhu cầu chi tiết</label>
+          <textarea id="note" rows="4" placeholder="Ví dụ: Số lượng người chơi, plugin/mod, vị trí máy chủ mong muốn..."></textarea>
+        </div>
+        <button class="btn" type="submit">Gửi yêu cầu</button>
+        <div id="order-status" class="small muted" style="margin-top:8px;"></div>
+      </form>
+    </section>
+
+    <!-- FAQ -->
+    <section class="card" id="faq">
+      <h2>FAQ</h2>
+      <div class="list">
+        <div class="item">
+          <strong>Giá có cố định không?</strong>
+          <div class="muted">Giá hiển thị là tham khảo; chúng tôi linh hoạt theo nhu cầu thực tế để tối ưu chi phí và hiệu năng.</div>
+        </div>
+        <div class="item">
+          <strong>Hỗ trợ kỹ thuật như thế nào?</strong>
+          <div class="muted">Hỗ trợ 24/7 qua Discord/Facebook; monitoring chủ động và backup theo yêu cầu.</div>
+        </div>
+        <div class="item">
+          <strong>Có thể nâng cấp gói giữa chừng không?</strong>
+          <div class="muted">Có. Bạn có thể nâng RAM/CPU/SSD bất kỳ lúc nào với downtime tối thiểu.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="host.js"></script>
+</body>
+</html>

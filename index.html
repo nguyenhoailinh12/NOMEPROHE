@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flash.ateex.cloud - Trạng thái & Cộng đồng</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta name="description" content="Xem trạng thái server Minecraft flash.ateex.cloud:18786, người chơi online, cập nhật, sự kiện, vật phẩm và gửi tố cáo hack." />
+</head>
+<body>
+    <!-- Hero header với nền đẹp (sẽ style trong CSS) -->
+    <header class="hero">
+        <div class="hero-overlay">
+            <div class="site-logo" aria-label="Logo" style="filter: drop-shadow(0 6px 14px rgba(0,0,0,0.35)); margin-bottom: 6px;">
+                <svg width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo">
+                  <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#6c8cff"/>
+                      <stop offset="100%" stop-color="#00c2a8"/>
+                    </linearGradient>
+                  </defs>
+                  <circle cx="36" cy="36" r="34" fill="url(#g)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                  <text x="36" y="43" font-size="28" font-weight="800" text-anchor="middle" fill="#ffffff">F</text>
+                </svg>
+            </div>
+            <h1>Flash.ateex.cloud</h1>
+            <p>Server Minecraft • Cổng: 18786</p>
+            <div class="input-group hero-input">
+                <input type="text" id="server-ip" value="flash.ateex.cloud:18786" readonly onfocus="this.select()" aria-label="Địa chỉ server Minecraft" />
+                <button id="copy-ip-btn" type="button" title="Sao chép địa chỉ">Sao chép</button>
+                <button id="check-status-btn">Kiểm tra</button>
+            </div>
+            <div id="quick-stats" class="quick-stats">
+                <span class="badge">Trạng thái: chưa kiểm tra</span>
+                <span class="badge">TPS: N/A</span>
+            </div>
+            <div class="social-links" style="margin-top:10px;">
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Tabs bar -->
+        <nav class="tabs" role="tablist">
+            <button class="tab active" data-tab-target="status" role="tab" aria-selected="true">Trạng thái</button>
+            <button class="tab" data-tab-target="players" role="tab">Người chơi</button>
+            <button class="tab" data-tab-target="chat" role="tab">Chat</button>
+            <button class="tab" data-tab-target="news" role="tab">Cập nhật</button>
+            <button class="tab" data-tab-target="security" role="tab">Security</button>
+            <button class="tab" data-tab-target="report" role="tab">Tố cáo</button>
+            <button class="tab" data-tab-target="community" role="tab">Cộng đồng</button>
+            <a class="btn" href="hosting.html">Mua SERVER MINECRAFT</a>
+        </nav>
+
+        <!-- Panels -->
+        <section class="tab-panel active" data-tab="status">
+            <div class="card" aria-labelledby="server-status-title">
+                <h2 id="server-status-title">Trạng thái máy chủ</h2>
+                <div id="server-status">
+                    <p>Vui lòng nhấn "Kiểm tra" để xem trạng thái.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tab-panel" data-tab="players">
+            <div class="card" aria-labelledby="players-title">
+                <h2 id="players-title">Người chơi trực tuyến</h2>
+                <div id="players-container">
+                    <ul id="players-list" class="players-list"></ul>
+                    <div id="no-players" class="muted">Chưa có thông tin người chơi.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tab-panel" data-tab="news">
+            <div class="grid-3">
+                <article class="card" aria-labelledby="updates-title">
+                    <h2 id="updates-title">Cập nhật máy chủ</h2>
+                    <div id="updates-list" class="list">
+                        <div class="muted">Chưa có cập nhật.</div>
+                    </div>
+                </article>
+                <article class="card" aria-labelledby="events-title">
+                    <h2 id="events-title">Sự kiện</h2>
+                    <div id="events-list" class="list">
+                        <div class="muted">Chưa có sự kiện.</div>
+                    </div>
+                </article>
+                <article class="card" aria-labelledby="items-title">
+                    <h2 id="items-title">Vật phẩm</h2>
+                    <div id="items-list" class="list">
+                        <div class="muted">Chưa có vật phẩm.</div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="tab-panel" data-tab="chat">
+            <div class="card" aria-labelledby="chat-title">
+                <h2 id="chat-title">Chat cộng đồng</h2>
+                <div class="chat-box">
+                    <div class="chat-messages" id="chat-messages"></div>
+                    <div class="chat-toolbar">
+                        <input type="text" id="chat-nick" placeholder="Tên hiển thị" maxlength="30" />
+                        <div class="chat-tools">
+                            <button id="emoji-btn" type="button" title="Emoji">😊</button>
+                            <button id="sticker-btn" type="button" title="Sticker">🌟</button>
+                            <label class="file-btn" title="Gửi ảnh/video">
+                                📎<input type="file" id="chat-file" accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm" hidden />
+                            </label>
+                        </div>
+                    </div>
+                    <div id="emoji-panel" class="emoji-panel" hidden></div>
+                    <div id="sticker-panel" class="sticker-panel" hidden></div>
+                    <div class="chat-input">
+                        <textarea id="chat-text" rows="2" placeholder="Nhập tin nhắn..." maxlength="300"></textarea>
+                        <button id="chat-send" type="button">Gửi</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tab-panel" data-tab="security">
+            <div class="card" aria-labelledby="secmon-title">
+                <h2 id="secmon-title">Security Monitor</h2>
+                <div id="secmon">
+                    <div class="muted">Đang tải tín hiệu an ninh...</div>
+                </div>
+                <div class="social-links" style="margin-top:10px;">
+                    <button id="trigger-backup" class="btn" type="button">Kích hoạt backup</button>
+                </div>
+                <p class="muted small">Tự động đẩy dữ liệu lên cloud khi phát hiện CRITICAL (cần cấu hình webhook).</p>
+            </div>
+        </section>
+
+        <section class="tab-panel" data-tab="report">
+            <div class="card report-section" aria-labelledby="report-title">
+                <h2 id="report-title">Gửi đơn tố cáo</h2>
+                <form id="report-form">
+                    <div class="form-group">
+                        <label for="reporter">Tên của bạn</label>
+                        <input type="text" id="reporter" name="reporter" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="reported">Tên người chơi bị tố cáo</label>
+                        <input type="text" id="reported" name="reported" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Lý do tố cáo</label>
+                        <textarea id="reason" name="reason" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="evidence">Bằng chứng (Ảnh/Video)</label>
+                        <input type="file" id="evidence" name="evidence" />
+                    </div>
+                    <button type="submit" id="submit-report-btn">Gửi</button>
+                </form>
+                <div id="report-status"></div>
+                <p class="muted small">Gợi ý: Admin xem danh sách tố cáo tại file admin.html</p>
+            </div>
+        </section>
+
+        <section class="tab-panel" data-tab="community">
+            <div class="card" aria-labelledby="social-title">
+                <h2 id="social-title">Cộng đồng</h2>
+                <div class="social-links">
+                    <a class="btn" href="hosting.html">Mua Hosting/VPS</a>
+                    <a class="btn discord" href="https://discord.gg/your-invite" target="_blank" rel="noopener noreferrer">Discord Server</a>
+                    <a class="btn facebook" href="https://facebook.com/your-admin" target="_blank" rel="noopener noreferrer">Facebook Admin</a>
+                </div>
+                <p class="muted small">Thay đường link Discord/Facebook trong file index.html</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
